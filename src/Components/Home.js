@@ -1,5 +1,6 @@
 import React from "react";
 import About from "./About";
+import Contact from "./Contact";
 import Carousel from "./Header/Carousel/Carousel";
 import Products from "./Products/Products";
 import Reviews from "./Reviews";
@@ -13,6 +14,7 @@ const Home = () => {
       <Products />
       <Summary />
       <Reviews />
+      <Contact />
     </>
   );
 };
