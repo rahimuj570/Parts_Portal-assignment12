@@ -1,7 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.int";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
   return (
     <div class="navbar bg-sky-100">
       <div class="navbar-start">
@@ -27,10 +32,10 @@ const Navbar = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <button>Item 1</button>
             </li>
             <li tabindex="0">
-              <a class="justify-between">
+              <button class="justify-between">
                 Parent
                 <svg
                   class="fill-current"
@@ -41,18 +46,18 @@ const Navbar = () => {
                 >
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                 </svg>
-              </a>
+              </button>
               <ul class="p-2">
                 <li>
-                  <a>Submenu 1</a>
+                  <button>Submenu 1</button>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <button>Submenu 2</button>
                 </li>
               </ul>
             </li>
             <li>
-              <a>Item 3</a>
+              <button>Item 3</button>
             </li>
           </ul>
         </div>
@@ -63,10 +68,10 @@ const Navbar = () => {
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
           <li>
-            <a>Item 1</a>
+            <button>Item 1</button>
           </li>
           <li tabindex="0">
-            <a>
+            <button>
               Parent
               <svg
                 class="fill-current"
@@ -77,24 +82,34 @@ const Navbar = () => {
               >
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
-            </a>
+            </button>
             <ul class="p-2">
               <li>
-                <a>Submenu 1</a>
+                <button>Submenu 1</button>
               </li>
               <li>
-                <a>Submenu 2</a>
+                <button>Submenu 2</button>
               </li>
             </ul>
           </li>
           <li>
-            <a>Item 3</a>
+            <button>Item 3</button>
           </li>
         </ul>
       </div>
-      <div class="navbar-end">
-        <a class="btn">Get started</a>
-      </div>
+      {user ? (
+        <div class="navbar-end">
+          <button onClick={() => signOut(auth)} class="btn">
+            Log out
+          </button>
+        </div>
+      ) : (
+        <div class="navbar-end">
+          <button onClick={() => navigate("/login")} class="btn">
+            Login
+          </button>
+        </div>
+      )}
     </div>
   );
 };
