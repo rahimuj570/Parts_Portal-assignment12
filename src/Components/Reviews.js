@@ -5,7 +5,7 @@ const Reviews = () => {
     <>
       <div className="bg-base-200">
         <div className="text-center mt-20 pt-10 pb-5 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
-          About Our Services
+          Recent Reviews
         </div>
       </div>
       <div class="h-96 carousel carousel-vertical ">
