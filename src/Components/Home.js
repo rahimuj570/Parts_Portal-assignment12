@@ -2,6 +2,7 @@ import React from "react";
 import About from "./About";
 import Carousel from "./Header/Carousel/Carousel";
 import Products from "./Products/Products";
+import Reviews from "./Reviews";
 import Summary from "./Summary";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       <About />
       <Products />
       <Summary />
+      <Reviews />
     </>
   );
 };
