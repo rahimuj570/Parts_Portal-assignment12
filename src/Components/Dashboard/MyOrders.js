@@ -11,6 +11,8 @@ const MyOrders = () => {
       .then((res) => res.json())
       .then((data) => setMyPd(data));
   }, [refetch]);
+
+  console.log(myPd);
   return (
     <>
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">

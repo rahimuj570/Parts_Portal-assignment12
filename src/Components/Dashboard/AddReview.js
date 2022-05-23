@@ -14,7 +14,20 @@ const AddReview = () => {
         onSubmit={(e) => {
           e.preventDefault();
           const revData = { name: user.displayName, rev: e.target.rev.value };
-          console.log(revData);
+          if (e.target.rev.value.length !== 0) {
+            fetch("http://localhost:5000/add_rev", {
+              method: "post",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(revData),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                e.target.reset();
+                console.log(result);
+              });
+          }
         }}
         className="text-center w-full"
       >
