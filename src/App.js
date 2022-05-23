@@ -13,6 +13,7 @@ import MyProfile from "./Components/Dashboard/MyProfile";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
+import Purchase from "./Components/Products/Purchase";
 import Login from "./Components/User_Management/Login";
 import RequireAuth from "./Components/User_Management/RequireAuth";
 import ResetPass from "./Components/User_Management/ResetPass";
@@ -44,7 +45,8 @@ function App() {
           <Route path="manage_products" element={<ManageProducts />} />
         </Route>
 
-        <Route path="blogs" element={<Blogs />}></Route>
+        <Route path="/blogs" element={<Blogs />}></Route>
+        <Route path="/purchase/:id" element={<Purchase />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

@@ -8,18 +8,18 @@ const Purchase = () => {
   const getInputQuantity = useRef();
   const { id } = useParams();
   const [singlePD, setSinglePD] = useState([]);
-  const { _id, name, quantity, price, image, supplier, info } = singlePD;
+  const { name, quantity, price, picture, minQuantity, about } = singlePD;
   const [reFetch, setReFetch] = useState(false);
 
   // ======== Get Selected Product =======
   useEffect(() => {
-    const url = `https://tranquil-hamlet-69916.herokuapp.com/product/${id}`;
+    const url = `http://localhost:5000/product/${id}`;
     fetch(url).then((res) => res.json().then((data) => setSinglePD(data)));
   }, [reFetch]);
-
+  console.log(singlePD);
   // ========= Update Quantity =========
   const quantityUpdateAction = (latestData) => {
-    const url = `https://tranquil-hamlet-69916.herokuapp.com/update/${id}`;
+    const url = `http://localhost:5000/product/${id}`;
     fetch(url, {
       method: "put",
       headers: { "content-type": "application/json" },
@@ -77,8 +77,10 @@ const Purchase = () => {
                   }`}</span>
                 </li>
                 <li>
-                  <span className="font-bold font-signika">Supplier: </span>
-                  <span>{supplier}</span>
+                  <span className="font-bold font-signika">
+                    Min Order Quantity:{" "}
+                  </span>
+                  <span>{minQuantity} Items</span>
                 </li>
                 <li>
                   <span className="font-bold font-signika">Stock: </span>
@@ -87,7 +89,7 @@ const Purchase = () => {
                   </span>
                 </li>
               </ul>
-              <p className="text-xl">{info}</p>
+              <p className="text-xl">{about}</p>
 
               <form
                 onSubmit={(e) => {
@@ -121,7 +123,7 @@ const Purchase = () => {
               </form>
             </div>
             <div className="lg:w-5/12 order-2">
-              <img src={image} alt="" className="rounded" />
+              <img src={picture} alt="" className="rounded" />
             </div>
           </div>
         </div>
