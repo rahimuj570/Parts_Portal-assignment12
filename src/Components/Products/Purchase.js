@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.int";
 
 const Purchase = () => {
+  const [user] = useAuthState(auth);
   const getInputQuantity = useRef();
   const { id } = useParams();
   const [singlePD, setSinglePD] = useState([]);
-  const { name, quantity, price, picture, minQuantity, about } = singlePD;
+  const { _id, name, quantity, price, picture, minQuantity, about } = singlePD;
   const [reFetch, setReFetch] = useState(false);
 
   // ======== Get Selected Product =======
@@ -19,13 +22,26 @@ const Purchase = () => {
   console.log(singlePD);
 
   // ========= Update Quantity =========
-  const quantityUpdateAction = (latestData) => {
+  const quantityUpdateAction = (latestData, userPD) => {
     const url = `http://localhost:5000/product/${id}`;
     fetch(url, {
       method: "put",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(latestData),
-    }).then((res) => res.json().then((data) => setReFetch(!reFetch)));
+    }).then((res) =>
+      res.json().then((data) => {
+        fetch("http://localhost:5000/add_products", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userPD),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result));
+        setReFetch(!reFetch);
+      })
+    );
   };
 
   const quantityAction = () => {
@@ -40,7 +56,16 @@ const Purchase = () => {
 
           const prevData = { ...singlePD };
           prevData.quantity = newQuantity;
-          quantityUpdateAction(prevData);
+          const userProduct = {
+            quantity: newQuantity,
+            email: user.email,
+            userName: user.displayName,
+            pdName: name,
+            price,
+            picture,
+            pdId: _id,
+          };
+          quantityUpdateAction(prevData, userProduct);
           toast.success("Order Successfully!");
         } else {
           toast.error(`You Have to order at least ${minQuantity} Products!`);
