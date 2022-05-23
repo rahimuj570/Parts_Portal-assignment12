@@ -22,22 +22,39 @@ const SocialLogin = () => {
     toast.error("Something Went Wrong!");
   }
 
+  // ============ User Post =======
   if (user) {
-    fetch("https://tranquil-hamlet-69916.herokuapp.com/login/", {
-      method: "POST",
+    fetch("http://localhost:5000/user", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify({
         email: user.user.email,
+        name: user.user.displayName,
+        role: "user",
       }),
-      headers: {
-        "Content-type": "application/json",
-      },
     })
       .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("accessToken", data.token);
-        navigate(from, { replace: true });
-      });
+      .then((result) => console.log(result));
   }
+
+  // if (user) {
+  //   fetch("https://tranquil-hamlet-69916.herokuapp.com/login/", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       email: user.user.email,
+  //     }),
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       localStorage.setItem("accessToken", data.token);
+  //       navigate(from, { replace: true });
+  //     });
+  // }
 
   return (
     <>

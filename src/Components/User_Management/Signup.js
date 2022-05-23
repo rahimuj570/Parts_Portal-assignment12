@@ -30,7 +30,7 @@ const Signup = () => {
     await createUserWithEmailAndPassword(data.Email, data.Password);
     await updateProfile({ displayName: data.Name });
     await fetch("http://localhost:5000/user", {
-      method: "POST",
+      method: "put",
       headers: {
         "content-type": "application/json",
       },
