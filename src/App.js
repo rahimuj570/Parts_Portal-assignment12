@@ -37,16 +37,65 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route path="my_profile" element={<MyProfile />} />
-          <Route path="my_orders" element={<MyOrders />} />
-          <Route path="add_reviews" element={<AddReview />} />
-          <Route path="manage_orders" element={<ManageAllOrders />} />
-          <Route path="manage_users" element={<MakeAdmin />} />
-          <Route path="manage_products" element={<ManageProducts />} />
+          <Route
+            path="my_profile"
+            element={
+              <RequireAuth>
+                <MyProfile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="my_orders"
+            element={
+              <RequireAuth>
+                <MyOrders />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="add_reviews"
+            element={
+              <RequireAuth>
+                <AddReview />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="manage_orders"
+            element={
+              <RequireAuth>
+                <ManageAllOrders />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="manage_users"
+            element={
+              <RequireAuth>
+                <MakeAdmin />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="manage_products"
+            element={
+              <RequireAuth>
+                <ManageProducts />
+              </RequireAuth>
+            }
+          />
         </Route>
 
         <Route path="/blogs" element={<Blogs />}></Route>
-        <Route path="/purchase/:id" element={<Purchase />}></Route>
+        <Route
+          path="/purchase/:id"
+          element={
+            <RequireAuth>
+              <Purchase />
+            </RequireAuth>
+          }
+        ></Route>
       </Routes>
       <Footer />
       <ToastContainer />
