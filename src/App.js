@@ -5,12 +5,16 @@ import "./App.css";
 import Blogs from "./Components/Blogs";
 import AddReview from "./Components/Dashboard/AddReview";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import MakeAdmin from "./Components/Dashboard/MakeAdmin";
+import ManageAllOrders from "./Components/Dashboard/ManageAllOrders";
+import ManageProducts from "./Components/Dashboard/ManageProducts";
 import MyOrders from "./Components/Dashboard/MyOrders";
 import MyProfile from "./Components/Dashboard/MyProfile";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
 import Login from "./Components/User_Management/Login";
+import RequireAuth from "./Components/User_Management/RequireAuth";
 import ResetPass from "./Components/User_Management/ResetPass";
 import Signup from "./Components/User_Management/Signup";
 
@@ -24,10 +28,20 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/reset_pass" element={<ResetPass />}></Route>
 
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
           <Route path="my_profile" element={<MyProfile />} />
           <Route path="my_orders" element={<MyOrders />} />
           <Route path="add_reviews" element={<AddReview />} />
+          <Route path="manage_orders" element={<ManageAllOrders />} />
+          <Route path="manage_users" element={<MakeAdmin />} />
+          <Route path="manage_products" element={<ManageProducts />} />
         </Route>
 
         <Route path="blogs" element={<Blogs />}></Route>

@@ -36,7 +36,9 @@ const SocialLogin = () => {
       }),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result));
+      .then((result) => {
+        navigate(from, { replace: true });
+      });
   }
 
   // if (user) {
