@@ -57,7 +57,7 @@ const Purchase = () => {
           const prevData = { ...singlePD };
           prevData.quantity = newQuantity;
           const userProduct = {
-            quantity: newQuantity,
+            quantity: inputQuantity,
             email: user.email,
             userName: user.displayName,
             pdName: name,

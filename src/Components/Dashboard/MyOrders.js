@@ -5,11 +5,12 @@ import auth from "../../firebase.int";
 const MyOrders = () => {
   const [user] = useAuthState(auth);
   const [myPd, setMyPd] = useState([]);
+  const [refetch, setRefetch] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/myPd/${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyPd(data));
-  }, []);
+  }, [refetch]);
   return (
     <>
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
@@ -29,7 +30,7 @@ const MyOrders = () => {
           </thead>
           <tbody>
             {myPd.map((pd) => (
-              <tr>
+              <tr key={pd._id}>
                 <td>
                   <div class="flex items-center space-x-3">
                     <div class="avatar">
@@ -51,7 +52,23 @@ const MyOrders = () => {
                 </td>
                 <td>{pd.quantity} Items</td>
                 <th>
-                  <button class="btn bg-red-400 text-white hover:bg-red-300 btn-ghost btn-xs">
+                  <button
+                    onClick={() => {
+                      if (
+                        window.confirm("Are You Sure to Cancel This Order?")
+                      ) {
+                        fetch(`http://localhost:5000/myPd/${pd._id}`, {
+                          method: "delete",
+                        })
+                          .then((res) => res.json())
+                          .then((result) => {
+                            setRefetch(!refetch);
+                            console.log(result);
+                          });
+                      }
+                    }}
+                    class="btn bg-red-400 text-white hover:bg-red-300 btn-ghost btn-xs"
+                  >
                     Delete
                   </button>
                 </th>
