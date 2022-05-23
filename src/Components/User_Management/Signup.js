@@ -29,6 +29,19 @@ const Signup = () => {
       return toast.error("Confirm Password Is'nt Same !");
     await createUserWithEmailAndPassword(data.Email, data.Password);
     await updateProfile({ displayName: data.Name });
+    await fetch("http://localhost:5000/user", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.Email,
+        name: data.Name,
+        role: "user",
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
     reset();
     navigate(from, { replace: true });
   };
