@@ -17,6 +17,7 @@ const Purchase = () => {
     fetch(url).then((res) => res.json().then((data) => setSinglePD(data)));
   }, [reFetch]);
   console.log(singlePD);
+
   // ========= Update Quantity =========
   const quantityUpdateAction = (latestData) => {
     const url = `http://localhost:5000/product/${id}`;
@@ -27,28 +28,26 @@ const Purchase = () => {
     }).then((res) => res.json().then((data) => setReFetch(!reFetch)));
   };
 
-  const quantityAction = (type) => {
+  const quantityAction = () => {
+    console.log("object");
     const inputQuantity = parseInt(getInputQuantity.current.value);
     const existQuantity = parseInt(quantity);
+    const minOrders = parseInt(minQuantity);
     if (inputQuantity > 0) {
-      if (type === "add-stock") {
-        const newQuantity = inputQuantity + existQuantity;
-        const prevData = { ...singlePD };
-        prevData.quantity = newQuantity;
-        quantityUpdateAction(prevData);
-        toast.success("Successfully Added");
-      } else {
-        if (existQuantity >= inputQuantity) {
+      if (existQuantity >= inputQuantity) {
+        if (inputQuantity >= minOrders) {
           const newQuantity = existQuantity - inputQuantity;
 
           const prevData = { ...singlePD };
           prevData.quantity = newQuantity;
           quantityUpdateAction(prevData);
-          toast.success("Successfully Delivered");
+          toast.success("Order Successfully!");
         } else {
-          toast.error("You Haven't Enough Product to Deliver!");
-          return;
+          toast.error(`You Have to order at least ${minQuantity} Products!`);
         }
+      } else {
+        toast.error("We Haven't Enough Product at this time!");
+        return;
       }
     } else {
       toast.error("Please Input a Valid Number");
@@ -108,16 +107,10 @@ const Purchase = () => {
                 />
                 <div className="mt-2">
                   <button
-                    onClick={() => quantityAction("delivery")}
+                    onClick={quantityAction}
                     className="smax:text-sm xsmax:px-2 text-white rounded-full py-2 px-5 text-lg font-semibold bg-purple-600 hover:bg-transparent  hover:text duration-300 hover:text-purple-600 inline-block border border-purple-600 mr-3"
                   >
-                    Delivery
-                  </button>
-                  <button
-                    onClick={() => quantityAction("add-stock")}
-                    className="smax:text-sm xsmax:px-2 text-white duration-300 rounded-full py-2 px-5 text-lg font-semibold bg-green-400 inline-block border hover:bg-white hover:text-black"
-                  >
-                    Add Stock
+                    Order Now
                   </button>
                 </div>
               </form>
