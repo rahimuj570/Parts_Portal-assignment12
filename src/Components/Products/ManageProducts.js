@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Loading from "../Loading";
 import UseTitle from "../../Hooks/UseTitle";
@@ -40,11 +40,8 @@ const ManageProducts = () => {
   return (
     <>
       <UseTitle title={"Manage Products"} />
-      <div className="pb-10 mt-16 ">
-        <h1 className="pb-2 text-4xl text-center font-extrabold text-indigo-400">
-          MANAGE PRODUCTS
-        </h1>
-        <div className=" w-36 h-1 bg-indigo-400 mx-auto rounded-lg" />
+      <div className="text-center mt-20 mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
+        Manage Products
       </div>
       <div className="mb-5 text-center">
         <button
@@ -77,6 +74,9 @@ const ManageProducts = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Minimum Order Quantity
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Edit</span>
               </th>
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Delete</span>
@@ -118,8 +118,17 @@ const ManageProducts = () => {
                   <td className="px-6 py-4">{quantity}</td>
                   <td className="px-6 py-4">{minQuantity}</td>
                   <td className="px-6 py-4 text-right">
+                    <div onClick={() => navigate(`/edit_product/${_id}`)}>
+                      <div class="tooltip" data-tip="Edit">
+                        <FaEdit className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-right">
                     <div onClick={() => deleteAction(_id)}>
-                      <FaRegTrashAlt className="text-red-600 cursor-pointer hover:text-red-500 text-2xl" />
+                      <div class="tooltip" data-tip="Delete">
+                        <FaRegTrashAlt className="text-red-600 cursor-pointer hover:text-red-500 text-2xl" />
+                      </div>
                     </div>
                   </td>
                 </tr>

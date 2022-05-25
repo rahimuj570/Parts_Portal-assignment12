@@ -7,12 +7,13 @@ import AddReview from "./Components/Dashboard/AddReview";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import MakeAdmin from "./Components/Dashboard/MakeAdmin";
 import ManageAllOrders from "./Components/Dashboard/ManageAllOrders";
-import ManageProducts from "./Components/Dashboard/ManageProducts";
 import MyOrders from "./Components/Dashboard/MyOrders";
 import MyProfile from "./Components/Dashboard/MyProfile";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
+import EditProducts from "./Components/Products/EditProducts";
+import ManageProducts from "./Components/Products/ManageProducts";
 import Purchase from "./Components/Products/Purchase";
 import Login from "./Components/User_Management/Login";
 import RequireAuth from "./Components/User_Management/RequireAuth";
@@ -93,6 +94,14 @@ function App() {
           element={
             <RequireAuth>
               <Purchase />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/edit_product/:id"
+          element={
+            <RequireAuth>
+              <EditProducts />
             </RequireAuth>
           }
         ></Route>
