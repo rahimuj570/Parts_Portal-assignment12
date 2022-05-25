@@ -8,6 +8,6 @@ const useGetData = (id) => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-  return [products, setProducts];
+  // return [products, setProducts];
 };
 export default useGetData;
