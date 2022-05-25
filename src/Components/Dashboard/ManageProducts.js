@@ -24,7 +24,7 @@ const ManageProducts = () => {
       })? Then type "DELETE" to confirm your action.`
     ).toLocaleUpperCase();
     if (confirm === "DELETE") {
-      fetch(`https://tranquil-hamlet-69916.herokuapp.com/delete/${id}`, {
+      fetch(`http://localhost:5000/delete_product/${id}`, {
         method: "DELETE",
       }).then((res) =>
         res.json().then((data) => {
