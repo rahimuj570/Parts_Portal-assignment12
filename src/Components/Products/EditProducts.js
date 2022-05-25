@@ -58,7 +58,6 @@ const EditProducts = () => {
               about: data.about,
             };
             setNewPdData(editedData);
-            console.log(editedData);
           } else {
             toast.error(
               "Only JPG, JPEG, GIF and PNG extension of Image is allow"
@@ -70,8 +69,6 @@ const EditProducts = () => {
         setLoad(false);
       });
   };
-
-  console.log(newPdData);
 
   const updateHandler = () => {
     const url = `http://localhost:5000/product/${id}`;

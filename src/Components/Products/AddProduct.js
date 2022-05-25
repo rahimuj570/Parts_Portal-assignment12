@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import { async } from "@firebase/util";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import auth from "../../firebase.int";
 import UseTitle from "../../Hooks/UseTitle";
+import Loading from "../Loading";
 
 const AddProduct = () => {
-  const [user] = useAuthState(auth);
+  const [pd, setPd] = useState({});
+  const [load, setLoad] = useState(false);
 
   const {
     register,
@@ -14,36 +17,80 @@ const AddProduct = () => {
     handleSubmit,
     reset,
   } = useForm();
+
   const onSubmit = async (data) => {
-    data.uid = user.uid;
-    const url = `https://tranquil-hamlet-69916.herokuapp.com/add`;
-    fetch(url, {
+    setLoad(true);
+    const picture = data.picture[0];
+    const formData = new FormData();
+    formData.append("image", picture);
+
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgStoreBB}`;
+    await fetch(url, {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+      body: formData,
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        if (result.success) {
+          const picture = result.data.url;
+          const pictureType = result.data.image.extension.toLowerCase();
+
+          if (
+            pictureType == "jpg" ||
+            pictureType == "jpeg" ||
+            pictureType == "gif" ||
+            pictureType == "png"
+          ) {
+            const insertedData = {
+              price: data.price,
+              picture,
+              quantity: data.quantity,
+              minQuantity: data.minQuantity,
+              name: data.name,
+              about: data.about,
+            };
+
+            // ======= Product Add =====
+            const url = `https://tranquil-hamlet-69916.herokuapp.com/add`;
+            fetch("http://localhost:5000/add_products", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(insertedData),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                console.log(result);
+                reset();
+                toast.success("Product Added");
+              });
+          } else {
+            toast.error(
+              "Only JPG, JPEG, GIF and PNG extension of Image is allow"
+            );
+          }
+        } else {
+          toast.error("Please upload a valid image file...");
+        }
+        setLoad(false);
       });
-    reset();
-    toast.success("Product Added");
   };
+  // ======== LOADINg =========
+  if (load) {
+    return <Loading />;
+  }
 
   return (
     <>
       <UseTitle title={"Add Product"} />
-      <div className="pb-10 mt-16 ">
-        <h1 className="pb-2 text-4xl text-center font-extrabold text-indigo-400">
-          ADD NEW PRODUCTS
-        </h1>
-        <div className=" w-36 h-1 bg-indigo-400 mx-auto rounded-lg" />
+
+      <div className="text-center mt-20 mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
+        Add Product
       </div>
 
       <form
-        className="mt-5 sm:w-2/6 w-5/6 mx-auto flex flex-col"
+        className="mt-5 w-5/6 mx-auto flex flex-col"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-4 flex flex-col">
@@ -61,11 +108,11 @@ const AddProduct = () => {
         <div className="mb-4 flex flex-col">
           <label htmlFor="image">Product Image</label>
           <input
-            type={"text"}
+            type={"file"}
             placeholder="Your Product Image"
             id="image"
             className="text-sm border-2 bg-slate-200 my-1 p-1"
-            {...register("image", {
+            {...register("picture", {
               required: true,
             })}
           />
@@ -78,6 +125,25 @@ const AddProduct = () => {
             id="quantity"
             className="text-sm border-2 bg-slate-200 my-1 p-1"
             {...register("quantity", {
+              required: true,
+              pattern: /^[1-9]/,
+            })}
+          />
+          {errors.quantity?.type === "required" && (
+            <p className="text-sm text-red-400">* Please Input The Quantity</p>
+          )}
+          {errors.quantity?.type === "pattern" && (
+            <p className="text-sm text-red-400">* Please Input a Valid Data</p>
+          )}
+        </div>
+        <div className="mb-4 flex flex-col">
+          <label htmlFor="minQuantity">Minimum Order Quantity</label>
+          <input
+            type={"number"}
+            placeholder="Your Product Quantity"
+            id="minQuantity"
+            className="text-sm border-2 bg-slate-200 my-1 p-1"
+            {...register("minQuantity", {
               required: true,
               pattern: /^[1-9]/,
             })}
@@ -110,34 +176,13 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-4 flex flex-col">
-          <label htmlFor="supplier">Supplier Name</label>
-          <input
-            title="You Can't Edit This Input."
-            type={"text"}
-            readOnly
-            defaultValue={user.displayName}
-            placeholder="Product Supplier Name"
-            id="supplier"
-            className="text-sm border-2 bg-slate-200 border-sky-300 my-1 p-1"
-            {...register("supplier")}
-          />
-          {errors.supplier?.type === "required" && (
-            <p className="text-sm text-red-400">
-              * Please Input The Supplier Name
-            </p>
-          )}
-          {errors.supplier?.type === "pattern" && (
-            <p className="text-sm text-red-400">* Please Input a Valid Data</p>
-          )}
-        </div>
-        <div className="mb-4 flex flex-col">
           <label htmlFor="description">Short Description</label>
           <textarea
             type={"text"}
             placeholder="Your Product Description"
             id="description"
             className="text-sm border-2 bg-slate-200 my-1 p-1"
-            {...register("info", {
+            {...register("about", {
               required: true,
             })}
           />
@@ -146,7 +191,7 @@ const AddProduct = () => {
         <input
           className="mb-20 shadow mx-auto w-2/6 rounded bg-indigo-400 text-white hover:bg-indigo-300 my-1 p-1"
           type="submit"
-          value={"Add Product"}
+          value={"Preview Product"}
         />
       </form>
     </>

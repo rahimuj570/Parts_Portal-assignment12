@@ -12,6 +12,7 @@ import MyProfile from "./Components/Dashboard/MyProfile";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
+import AddProduct from "./Components/Products/AddProduct";
 import EditProducts from "./Components/Products/EditProducts";
 import ManageProducts from "./Components/Products/ManageProducts";
 import Purchase from "./Components/Products/Purchase";
@@ -102,6 +103,15 @@ function App() {
           element={
             <RequireAuth>
               <EditProducts />
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route
+          path="/add_product"
+          element={
+            <RequireAuth>
+              <AddProduct />
             </RequireAuth>
           }
         ></Route>

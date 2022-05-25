@@ -37,6 +37,11 @@ const ManageProducts = () => {
       return;
     }
   };
+
+  if (products.length === 0) {
+    return <Loading />;
+  }
+  console.log(products);
   return (
     <>
       <UseTitle title={"Manage Products"} />
@@ -45,7 +50,7 @@ const ManageProducts = () => {
       </div>
       <div className="mb-5 text-center">
         <button
-          onClick={() => navigate("/add")}
+          onClick={() => navigate("/add_product")}
           className="p-1 font-semibold hover:bg-indigo-400 hover:text-white duration-300 hover:border-slate-200 bg-white border-indigo-400 border-4 text-indigo-400"
         >
           Add New Products
