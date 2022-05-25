@@ -21,9 +21,9 @@ const RequireAuth = ({ children }) => {
   }
 
   // ======= Verify =======
-  if (!user?.emailVerified) {
-    return <Verify />;
-  }
+  // if (!user?.emailVerified) {
+  //   return <Verify />;
+  // }
 
   return children;
 };

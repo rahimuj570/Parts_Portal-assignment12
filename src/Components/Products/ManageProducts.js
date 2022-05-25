@@ -4,6 +4,10 @@ import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Loading from "../Loading";
 import UseTitle from "../../Hooks/UseTitle";
+import useRoleUser from "../../Hooks/useRoleUser";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.int";
+import AccessDenied from "../User_Management/AccessDenied";
 
 const ManageProducts = () => {
   const navigate = useNavigate();
@@ -37,6 +41,9 @@ const ManageProducts = () => {
       return;
     }
   };
+  if (useRoleUser() === "user") {
+    return <AccessDenied />;
+  }
 
   if (products.length === 0) {
     return <Loading />;

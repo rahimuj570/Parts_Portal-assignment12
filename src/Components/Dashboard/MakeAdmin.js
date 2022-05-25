@@ -3,6 +3,8 @@ import UseTitle from "../../Hooks/UseTitle";
 import { GrUserAdmin, GrUserExpert } from "react-icons/gr";
 import { ImSpinner9 } from "react-icons/im";
 import { toast } from "react-toastify";
+import AccessDenied from "../User_Management/AccessDenied";
+import useRoleUser from "../../Hooks/useRoleUser";
 
 const MakeAdmin = () => {
   const [users, setUsers] = useState([]);
@@ -43,6 +45,12 @@ const MakeAdmin = () => {
         setLoad(false);
       });
   };
+
+  // ======== Check Role =========
+  if (useRoleUser() === "user") {
+    return <AccessDenied />;
+  }
+
   return (
     <>
       <UseTitle title={"Manage Users"} />

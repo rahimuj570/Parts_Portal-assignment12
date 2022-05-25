@@ -12,6 +12,7 @@ import MyProfile from "./Components/Dashboard/MyProfile";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
+import NotFound404 from "./Components/NotFound404/NotFound404";
 import AddProduct from "./Components/Products/AddProduct";
 import EditProducts from "./Components/Products/EditProducts";
 import ManageProducts from "./Components/Products/ManageProducts";
@@ -115,6 +116,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="*" element={<NotFound404 />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

@@ -4,8 +4,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import auth from "../../firebase.int";
+import useRoleUser from "../../Hooks/useRoleUser";
 import UseTitle from "../../Hooks/UseTitle";
 import Loading from "../Loading";
+import AccessDenied from "../User_Management/AccessDenied";
 
 const AddProduct = () => {
   const [pd, setPd] = useState({});
@@ -76,6 +78,12 @@ const AddProduct = () => {
         setLoad(false);
       });
   };
+
+  // ======== Check Role =========
+  if (useRoleUser() === "user") {
+    return <AccessDenied />;
+  }
+
   // ======== LOADINg =========
   if (load) {
     return <Loading />;
