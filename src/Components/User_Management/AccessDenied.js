@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import UseTitle from "../../Hooks/UseTitle";
 const AccessDenied = () => {
   const navigate = useNavigate();
   return (
     <>
+      <UseTitle title={"Not Allowed"} />
       <div class="w-full h-full bg-red-400 flex justify-center items-center">
         <div className="text-center">
           <h1 class="text-white text-9xl font-extrabold">403</h1>

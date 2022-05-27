@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.int";
+import UseTitle from "../../Hooks/UseTitle";
 import AccessDenied from "../User_Management/AccessDenied";
 
 const MyOrders = () => {
@@ -34,6 +35,7 @@ const MyOrders = () => {
 
   return (
     <>
+      <UseTitle title={"Manage My Orders"} />
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
         My Orders
       </div>

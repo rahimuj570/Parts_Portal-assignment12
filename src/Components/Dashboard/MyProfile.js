@@ -6,6 +6,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { GiModernCity, GiSmartphone } from "react-icons/gi";
 import { MdOutlineSchool } from "react-icons/md";
 import { toast } from "react-toastify";
+import UseTitle from "../../Hooks/UseTitle";
 
 const MyProfile = () => {
   const [user] = useAuthState(auth);
@@ -23,6 +24,7 @@ const MyProfile = () => {
       <div className="text-center mt-48 mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
         My Profile
       </div>
+      <UseTitle title={"My Profile"} />
 
       <div class="hero-content text-center">
         <div class="max-w-md">

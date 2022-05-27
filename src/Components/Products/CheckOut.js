@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Loading from "../Loading";
 import { toast } from "react-toastify";
+import UseTitle from "../../Hooks/UseTitle";
 
 const CheckOut = () => {
   const [singlePD, setSinglePD] = useState({});
@@ -43,6 +44,7 @@ const CheckOut = () => {
 
   return (
     <>
+      <UseTitle title={"Checkout"} />
       <div className="text-center mt-20 mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
         Checkout
       </div>

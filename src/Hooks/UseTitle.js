@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 const UseTitle = ({ title }) => {
   return (
     <Helmet>
-      <title>{title} - Tech Layer</title>
+      <title>{title} - Parts Portal</title>
     </Helmet>
   );
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import UseTitle from "../Hooks/UseTitle";
 
 const Portfolio = () => {
   const navigate = useNavigate();
   return (
     <>
+      <UseTitle title={"Portfolio"} />
       <div class="mx-auto card w-5/6 bg-base-100 shadow-xl">
         <figure class="max-w-xs mx-auto px-10 pt-10">
           <img

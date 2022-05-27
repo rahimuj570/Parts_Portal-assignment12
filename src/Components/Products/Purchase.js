@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.int";
+import UseTitle from "../../Hooks/UseTitle";
 
 const Purchase = () => {
   const [user] = useAuthState(auth);
@@ -90,6 +91,7 @@ const Purchase = () => {
 
   return (
     <>
+      <UseTitle title={"Buy Product"} />
       <div className="py-16">
         <div className="container m-auto px-6">
           <div className="lg:flex justify-between items-center">

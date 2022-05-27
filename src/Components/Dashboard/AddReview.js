@@ -1,11 +1,13 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.int";
+import UseTitle from "../../Hooks/UseTitle";
 
 const AddReview = () => {
   const [user] = useAuthState(auth);
   return (
     <>
+      <UseTitle title={"Add Review"} />
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
         Add Reviews
       </div>

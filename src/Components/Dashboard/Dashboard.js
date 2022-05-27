@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Outlet, useNavigate } from "react-router-dom";
 import auth from "../../firebase.int";
+import UseTitle from "../../Hooks/UseTitle";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState([]);
@@ -16,6 +17,7 @@ const Dashboard = () => {
 
   return (
     <>
+      <UseTitle title={"Dashboard"} />
       <div class="relative drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col items-center justify-center">
