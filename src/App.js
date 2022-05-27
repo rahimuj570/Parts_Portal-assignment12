@@ -14,8 +14,10 @@ import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
 import NotFound404 from "./Components/NotFound404/NotFound404";
 import AddProduct from "./Components/Products/AddProduct";
+import CheckOut from "./Components/Products/CheckOut";
 import EditProducts from "./Components/Products/EditProducts";
 import ManageProducts from "./Components/Products/ManageProducts";
+import Pay from "./Components/Products/Pay";
 import Purchase from "./Components/Products/Purchase";
 import Login from "./Components/User_Management/Login";
 import RequireAuth from "./Components/User_Management/RequireAuth";
@@ -113,6 +115,14 @@ function App() {
           element={
             <RequireAuth>
               <AddProduct />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/pay/:id"
+          element={
+            <RequireAuth>
+              <Pay />
             </RequireAuth>
           }
         ></Route>

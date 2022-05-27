@@ -9,6 +9,9 @@ import auth from "../../firebase.int";
 const Purchase = () => {
   const [user] = useAuthState(auth);
   const getInputQuantity = useRef();
+  const getInputEmail = useRef();
+  const getInputPhone = useRef();
+  const getInputAddress = useRef();
   const { id } = useParams();
   const [singlePD, setSinglePD] = useState([]);
   const { _id, name, quantity, price, picture, minQuantity, about } = singlePD;
@@ -44,9 +47,10 @@ const Purchase = () => {
     );
   };
 
-  const quantityAction = () => {
-    console.log("object");
+  const quantityAction = (data) => {
     const inputQuantity = parseInt(getInputQuantity.current.value);
+    const phone = getInputPhone.current.value;
+    const address = getInputAddress.current.value;
     const existQuantity = parseInt(quantity);
     const minOrders = parseInt(minQuantity);
     if (inputQuantity > 0) {
@@ -64,6 +68,9 @@ const Purchase = () => {
             price,
             picture,
             pdId: _id,
+            address,
+            phone,
+            totalPrice: parseFloat(price) * inputQuantity,
           };
           quantityUpdateAction(prevData, userProduct);
           toast.success("Order Successfully!");
@@ -122,7 +129,52 @@ const Purchase = () => {
                 }}
                 className="shadow-lg rounded-3xl px-1 items-center flex flex-col py-5 mt-2"
               >
+                <div class="mb-2 form-control">
+                  <label class="input-group input-group-md">
+                    <span>Address</span>
+                    <input
+                      required
+                      ref={getInputAddress}
+                      name="address"
+                      type="text"
+                      placeholder="Your Address"
+                      class="input input-bordered input-md"
+                    />
+                  </label>
+                </div>
+
+                <div class="mb-2 form-control">
+                  <label class="input-group input-group-md">
+                    <span>Phone</span>
+                    <input
+                      required
+                      ref={getInputPhone}
+                      name="phone"
+                      type="number"
+                      placeholder="Your Phone"
+                      class="input input-bordered input-md"
+                    />
+                  </label>
+                </div>
+
+                <div class="mb-2 form-control">
+                  <label class="input-group input-group-md">
+                    <span>Email</span>
+                    <input
+                      required
+                      ref={getInputEmail}
+                      readOnly
+                      value={user.email}
+                      name="phone"
+                      type="text"
+                      placeholder="Type here"
+                      class="input input-bordered input-md"
+                    />
+                  </label>
+                </div>
+
                 <input
+                  required
                   name="quantity"
                   ref={getInputQuantity}
                   title="Input Product Quantity to Deliver/Add-Stock"

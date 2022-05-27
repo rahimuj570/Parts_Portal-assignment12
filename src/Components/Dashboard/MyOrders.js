@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.int";
 
 const MyOrders = () => {
@@ -12,7 +13,7 @@ const MyOrders = () => {
       .then((data) => setMyPd(data));
   }, [refetch]);
 
-  console.log(myPd);
+  const navigate = useNavigate();
   return (
     <>
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
@@ -46,7 +47,7 @@ const MyOrders = () => {
                   </div>
                 </td>
                 <td>
-                  Total ${parseFloat(pd.price) * parseFloat(pd.quantity)}
+                  Total ${pd.totalPrice}
                   <br />
                   <span class="badge badge-ghost badge-sm">
                     per items ${pd.price}
@@ -75,7 +76,10 @@ const MyOrders = () => {
                   </button>
                 </th>
                 <th>
-                  <button class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm">
+                  <button
+                    onClick={() => navigate(`/pay/${pd._id}`)}
+                    class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                  >
                     Pay
                   </button>
                 </th>
