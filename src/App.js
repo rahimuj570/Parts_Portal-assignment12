@@ -43,7 +43,7 @@ function App() {
           }
         >
           <Route
-            path="my_profile"
+            index
             element={
               <RequireAuth>
                 <MyProfile />

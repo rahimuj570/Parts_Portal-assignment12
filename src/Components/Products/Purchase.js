@@ -47,7 +47,7 @@ const Purchase = () => {
     );
   };
 
-  const quantityAction = (data) => {
+  const quantityAction = async (data) => {
     const inputQuantity = parseInt(getInputQuantity.current.value);
     const phone = getInputPhone.current.value;
     const address = getInputAddress.current.value;
@@ -71,6 +71,7 @@ const Purchase = () => {
             address,
             phone,
             totalPrice: parseFloat(price) * inputQuantity,
+            payStatus: "unpaid",
           };
           quantityUpdateAction(prevData, userProduct);
           toast.success("Order Successfully!");

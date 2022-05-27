@@ -97,54 +97,59 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {products?.map(
-              ({ _id, name, price, minQuantity, picture, quantity, about }) => (
-                <tr
-                  key={_id}
-                  className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
-                >
-                  <td className="px-6 py-4">
-                    <img className="w-10" src={picture} alt={name} />
-                  </td>
-                  {name.length > 40 ? (
-                    <th
-                      title={name}
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                    >
-                      {name.length > 40 ? name.slice(0, 40) + " ..." : name}
-                    </th>
-                  ) : (
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                    >
-                      {name}
-                    </th>
-                  )}
-                  <td className="px-6 py-4">
-                    <div class="tooltip" data-tip={about}>
-                      {about.length > 50 ? about.slice(0, 30) + "..." : about}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">{price}</td>
-                  <td className="px-6 py-4">{quantity}</td>
-                  <td className="px-6 py-4">{minQuantity}</td>
-                  <td className="px-6 py-4 text-right">
-                    <div onClick={() => navigate(`/edit_product/${_id}`)}>
-                      <div class="tooltip" data-tip="Edit">
-                        <FaEdit className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
+              (pd) =>
+                pd.name && (
+                  <tr
+                    key={pd?._id}
+                    className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
+                  >
+                    <td className="px-6 py-4">
+                      <img className="w-10" src={pd?.picture} alt={pd?.name} />
+                    </td>
+                    {pd?.name.length > 40 ? (
+                      <th
+                        title={pd?.name}
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                      >
+                        {pd?.name.length > 40
+                          ? pd?.name.slice(0, 40) + " ..."
+                          : pd?.name}
+                      </th>
+                    ) : (
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                      >
+                        {pd?.name}
+                      </th>
+                    )}
+                    <td className="px-6 py-4">
+                      <div class="tooltip" data-tip={pd?.about}>
+                        {pd?.about.length > 50
+                          ? pd?.about.slice(0, 30) + "..."
+                          : pd?.about}
                       </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div onClick={() => deleteAction(_id)}>
-                      <div class="tooltip" data-tip="Delete">
-                        <FaRegTrashAlt className="text-red-600 cursor-pointer hover:text-red-500 text-2xl" />
+                    </td>
+                    <td className="px-6 py-4">{pd?.price}</td>
+                    <td className="px-6 py-4">{pd?.quantity}</td>
+                    <td className="px-6 py-4">{pd?.minQuantity}</td>
+                    <td className="px-6 py-4 text-right">
+                      <div onClick={() => navigate(`/edit_product/${pd?._id}`)}>
+                        <div class="tooltip" data-tip="Edit">
+                          <FaEdit className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              )
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div onClick={() => deleteAction(pd?._id)}>
+                        <div class="tooltip" data-tip="Delete">
+                          <FaRegTrashAlt className="text-red-600 cursor-pointer hover:text-red-500 text-2xl" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )
             )}
           </tbody>
         </table>

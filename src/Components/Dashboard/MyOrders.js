@@ -75,14 +75,36 @@ const MyOrders = () => {
                     Delete
                   </button>
                 </th>
-                <th>
-                  <button
-                    onClick={() => navigate(`/pay/${pd._id}`)}
-                    class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
-                  >
-                    Pay
-                  </button>
-                </th>
+                {pd.payStatus === "unpaid" && (
+                  <th>
+                    <button
+                      onClick={() => navigate(`/pay/${pd._id}`)}
+                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                    >
+                      Pay
+                    </button>
+                  </th>
+                )}
+                {pd.payStatus === "paid" && (
+                  <th>
+                    <button
+                      disabled
+                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                    >
+                      Paid
+                    </button>
+                  </th>
+                )}
+                {pd.payStatus === "pending" && (
+                  <th>
+                    <button
+                      disabled
+                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                    >
+                      Pending
+                    </button>
+                  </th>
+                )}
               </tr>
             ))}
           </tbody>

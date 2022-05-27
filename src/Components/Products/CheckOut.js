@@ -130,7 +130,21 @@ const CheckOut = () => {
               } else {
                 console.log(paymentIntent);
                 toast.success("Successfully Paid");
+
+                singlePD.payStatus = "pending";
+                // ====== Update PAYMENT====
+                const url = `http://localhost:5000/my_product/${singlePD._id}`;
+                fetch(url, {
+                  method: "put",
+                  headers: { "content-type": "application/json" },
+
+                  body: JSON.stringify({
+                    ...singlePD,
+                  }),
+                }).then((res) => res.json().then((data) => console.log(data)));
               }
+
+              // ==========
             }}
             className="mt-10 p-2 bg-slate-100"
           >
