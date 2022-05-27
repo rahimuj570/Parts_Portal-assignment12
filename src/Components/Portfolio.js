@@ -6,9 +6,10 @@ const Portfolio = () => {
   return (
     <>
       <div class="mx-auto card w-5/6 bg-base-100 shadow-xl">
-        <figure class="px-10 pt-10">
+        <figure class="max-w-xs mx-auto px-10 pt-10">
           <img
-            src="https://api.lorem.space/image/shoes?w=400&h=225"
+            className="w-full ring rounded-full"
+            src="https://avatars.githubusercontent.com/u/89479874"
             alt="Shoes"
             class="rounded-xl"
           />
