@@ -10,6 +10,7 @@ import auth from "../../firebase.int";
 import AccessDenied from "../User_Management/AccessDenied";
 
 const ManageProducts = () => {
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
@@ -30,6 +31,9 @@ const ManageProducts = () => {
     if (confirm === "DELETE") {
       fetch(`http://localhost:5000/delete_product/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
+        },
       }).then((res) =>
         res.json().then((data) => {
           const remainingPD = products.filter((product) => product._id !== id);

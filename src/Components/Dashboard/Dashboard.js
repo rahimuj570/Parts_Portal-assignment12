@@ -67,9 +67,7 @@ const Dashboard = () => {
             )}
 
             <li>
-              <button onClick={() => navigate("/dashboard/my_profile")}>
-                My Profile
-              </button>
+              <button onClick={() => navigate("/dashboard")}>My Profile</button>
             </li>
           </ul>
         </div>

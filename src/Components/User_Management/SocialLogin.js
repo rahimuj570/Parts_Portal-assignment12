@@ -37,26 +37,22 @@ const SocialLogin = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        navigate(from, { replace: true });
+        fetch("http://localhost:5000/login/", {
+          method: "POST",
+          body: JSON.stringify({
+            email: user.user.email,
+          }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("accessToken", data.token);
+            navigate(from, { replace: true });
+          });
       });
   }
-
-  // if (user) {
-  //   fetch("https://tranquil-hamlet-69916.herokuapp.com/login/", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       email: user.user.email,
-  //     }),
-  //     headers: {
-  //       "Content-type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       localStorage.setItem("accessToken", data.token);
-  //       navigate(from, { replace: true });
-  //     });
-  // }
 
   return (
     <>

@@ -63,7 +63,7 @@ const Signup = () => {
   }
 
   if (user) {
-    fetch("https:/localhost:5000/login/", {
+    fetch("http://localhost:5000/login/", {
       method: "POST",
       body: JSON.stringify({
         email: user.user.email,

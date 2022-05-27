@@ -75,6 +75,7 @@ const EditProducts = () => {
     fetch(url, {
       method: "put",
       headers: {
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(newPdData),

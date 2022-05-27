@@ -2,18 +2,36 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.int";
+import AccessDenied from "../User_Management/AccessDenied";
 
 const MyOrders = () => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const [myPd, setMyPd] = useState([]);
   const [refetch, setRefetch] = useState(false);
+  const [denied, setDenied] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/myPd/${user.email}`)
+    fetch(`http://localhost:5000/myPd/${user.email}`, {
+      headers: {
+        authorization: `${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setMyPd(data));
+      .then((data) => {
+        if (data?.message) {
+          setDenied(true);
+        } else {
+          setMyPd(data);
+        }
+      });
   }, [refetch]);
 
-  const navigate = useNavigate();
+  // ======= UnAuthorized=======
+  if (denied) {
+    setTimeout(() => navigate("/login"), 3000);
+    return <AccessDenied />;
+  }
+
   return (
     <>
       <div className="text-center mb-10 border-b-4 md:w-3/6 w-5/6 pb-1 mx-auto text-3xl font-bold">
