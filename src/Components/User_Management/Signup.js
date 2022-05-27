@@ -62,6 +62,23 @@ const Signup = () => {
       toast.error("Email Already Registered !");
   }
 
+  if (user) {
+    fetch("https:/localhost:5000/login/", {
+      method: "POST",
+      body: JSON.stringify({
+        email: user.user.email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        navigate(from, { replace: true });
+      });
+  }
+
   return (
     <>
       <UseTitle title={"Signup"} />

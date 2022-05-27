@@ -38,7 +38,7 @@ const Login = () => {
   }
 
   if (user) {
-    fetch("https://tranquil-hamlet-69916.herokuapp.com/login/", {
+    fetch("https:/localhost:5000/login/", {
       method: "POST",
       body: JSON.stringify({
         email: user.user.email,
