@@ -32,32 +32,14 @@ const Navbar = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <button>Item 1</button>
+              <button onClick={() => navigate("/dashboard")}>Dashboard</button>
             </li>
-            <li tabindex="0">
-              <button class="justify-between">
-                Parent
-                <svg
-                  class="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                </svg>
-              </button>
-              <ul class="p-2">
-                <li>
-                  <button>Submenu 1</button>
-                </li>
-                <li>
-                  <button>Submenu 2</button>
-                </li>
-              </ul>
+
+            <li>
+              <button onClick={() => navigate("/blogs")}>Blogs</button>
             </li>
             <li>
-              <button>Item 3</button>
+              <button onClick={() => navigate("/portfolio")}>Portfolio</button>
             </li>
           </ul>
         </div>
@@ -73,6 +55,9 @@ const Navbar = () => {
 
           <li>
             <button onClick={() => navigate("/blogs")}>Blogs</button>
+          </li>
+          <li>
+            <button onClick={() => navigate("/portfolio")}>Portfolio</button>
           </li>
         </ul>
       </div>

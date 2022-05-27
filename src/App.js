@@ -13,6 +13,7 @@ import Footer from "./Components/Footer";
 import Navbar from "./Components/Header/Navbar";
 import Home from "./Components/Home";
 import NotFound404 from "./Components/NotFound404/NotFound404";
+import Portfolio from "./Components/Portfolio";
 import AddProduct from "./Components/Products/AddProduct";
 import CheckOut from "./Components/Products/CheckOut";
 import EditProducts from "./Components/Products/EditProducts";
@@ -123,6 +124,14 @@ function App() {
           element={
             <RequireAuth>
               <Pay />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/portfolio"
+          element={
+            <RequireAuth>
+              <Portfolio />
             </RequireAuth>
           }
         ></Route>
