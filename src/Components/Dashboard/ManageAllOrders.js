@@ -14,7 +14,7 @@ const ManageAllOrders = () => {
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myPd`)
+    fetch(`https://boiling-garden-56159.herokuapp.com/myPd`)
       .then((res) => res.json())
       .then((data) => setAllOrders(data));
   }, [refetch]);
@@ -31,8 +31,8 @@ const ManageAllOrders = () => {
         My Orders
       </div>
 
-      <div class="overflow-x-auto w-full">
-        <table class="table w-full">
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>Name</th>
@@ -46,21 +46,21 @@ const ManageAllOrders = () => {
             {allOrders.map((pd) => (
               <tr key={pd._id}>
                 <td>
-                  <div class="flex items-center space-x-3">
-                    <div class="avatar">
-                      <div class="mask mask-squircle w-12 h-12">
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
                         <img alt="" src={pd.picture} />
                       </div>
                     </div>
                     <div>
-                      <div class="font-bold">{pd.pdName}</div>
+                      <div className="font-bold">{pd.pdName}</div>
                     </div>
                   </div>
                 </td>
                 <td>
                   Total ${pd.totalPrice}
                   <br />
-                  <span class="badge badge-ghost badge-sm">
+                  <span className="badge badge-ghost badge-sm">
                     per items ${pd.price}
                   </span>
                 </td>
@@ -71,9 +71,12 @@ const ManageAllOrders = () => {
                       if (
                         window.confirm("Are You Sure to Cancel This Order?")
                       ) {
-                        fetch(`http://localhost:5000/myPd/${pd._id}`, {
-                          method: "delete",
-                        })
+                        fetch(
+                          `https://boiling-garden-56159.herokuapp.com/myPd/${pd._id}`,
+                          {
+                            method: "delete",
+                          }
+                        )
                           .then((res) => res.json())
                           .then((result) => {
                             setRefetch(!refetch);
@@ -81,7 +84,7 @@ const ManageAllOrders = () => {
                           });
                       }
                     }}
-                    class="btn bg-red-400 text-white hover:bg-red-300 btn-ghost btn-xs"
+                    className="btn bg-red-400 text-white hover:bg-red-300 btn-ghost btn-xs"
                   >
                     Delete
                   </button>
@@ -90,7 +93,7 @@ const ManageAllOrders = () => {
                   <th>
                     <button
                       disabled
-                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                      className="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
                     >
                       Unpaid
                     </button>
@@ -100,7 +103,7 @@ const ManageAllOrders = () => {
                   <th>
                     <button
                       disabled
-                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                      className="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
                     >
                       Delivered
                     </button>
@@ -110,7 +113,7 @@ const ManageAllOrders = () => {
                   <th>
                     <button
                       disabled
-                      class="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
+                      className="btn bg-yellow-400 hover:bg-yellow-300 text-white btn-ghost btn-sm"
                     >
                       Accept Order
                     </button>

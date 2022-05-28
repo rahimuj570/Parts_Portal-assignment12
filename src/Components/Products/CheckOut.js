@@ -11,7 +11,7 @@ const CheckOut = () => {
 
   // ======== Get Selected Product =======
   useEffect(() => {
-    const url = `http://localhost:5000/my_product/${id}`;
+    const url = `https://boiling-garden-56159.herokuapp.com/my_product/${id}`;
     fetch(url, {
       headers: { body: id },
     }).then((res) => res.json().then((data) => setSinglePD(data)));
@@ -25,11 +25,14 @@ const CheckOut = () => {
 
   useEffect(() => {
     if (Object.keys(singlePD).length !== 0) {
-      fetch("http://localhost:5000/create-payment-intent", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(singlePD),
-      })
+      fetch(
+        "https://boiling-garden-56159.herokuapp.com/create-payment-intent",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(singlePD),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setClientSecret(data.clientSecret);
@@ -51,8 +54,8 @@ const CheckOut = () => {
 
       <div className=" flex justify-center items-center">
         <div className="p-2 m-5 shadow-lg">
-          <div class="card-body ">
-            <h2 class="card-title mb-2 text-2xl">{singlePD.pdName}</h2>
+          <div className="card-body ">
+            <h2 className="card-title mb-2 text-2xl">{singlePD.pdName}</h2>
             <div className="mb-1 flex">
               <span className="font-bold mr-2">Per Item Price:</span>
               <p>{singlePD.price} TK</p>
@@ -135,7 +138,7 @@ const CheckOut = () => {
 
                 singlePD.payStatus = "pending";
                 // ====== Update PAYMENT====
-                const url = `http://localhost:5000/my_product/${singlePD._id}`;
+                const url = `https://boiling-garden-56159.herokuapp.com/my_product/${singlePD._id}`;
                 fetch(url, {
                   method: "put",
                   headers: { "content-type": "application/json" },

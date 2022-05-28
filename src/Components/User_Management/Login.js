@@ -38,7 +38,7 @@ const Login = () => {
   }
 
   if (user) {
-    fetch("http://localhost:5000/login/", {
+    fetch("https://boiling-garden-56159.herokuapp.com/login/", {
       method: "POST",
       body: JSON.stringify({
         email: user.user.email,

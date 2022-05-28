@@ -15,7 +15,7 @@ const ManageProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/products`;
+    const url = `https://boiling-garden-56159.herokuapp.com/products`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
@@ -29,7 +29,7 @@ const ManageProducts = () => {
       })? Then type "DELETE" to confirm your action.`
     ).toLocaleUpperCase();
     if (confirm === "DELETE") {
-      fetch(`http://localhost:5000/delete_product/${id}`, {
+      fetch(`https://boiling-garden-56159.herokuapp.com/delete_product/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
@@ -129,7 +129,7 @@ const ManageProducts = () => {
                       </th>
                     )}
                     <td className="px-6 py-4">
-                      <div class="tooltip" data-tip={pd?.about}>
+                      <div className="tooltip" data-tip={pd?.about}>
                         {pd?.about.length > 50
                           ? pd?.about.slice(0, 30) + "..."
                           : pd?.about}
@@ -140,14 +140,14 @@ const ManageProducts = () => {
                     <td className="px-6 py-4">{pd?.minQuantity}</td>
                     <td className="px-6 py-4 text-right">
                       <div onClick={() => navigate(`/edit_product/${pd?._id}`)}>
-                        <div class="tooltip" data-tip="Edit">
+                        <div className="tooltip" data-tip="Edit">
                           <FaEdit className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div onClick={() => deleteAction(pd?._id)}>
-                        <div class="tooltip" data-tip="Delete">
+                        <div className="tooltip" data-tip="Delete">
                           <FaRegTrashAlt className="text-red-600 cursor-pointer hover:text-red-500 text-2xl" />
                         </div>
                       </div>

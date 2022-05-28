@@ -99,7 +99,7 @@ const MakeAdmin = () => {
                 </th>
 
                 <td className="px-6 py-4">
-                  <div class="tooltip" data-tip={"email"}>
+                  <div className="tooltip" data-tip={"email"}>
                     {user?.email}
                   </div>
                 </td>
@@ -110,19 +110,19 @@ const MakeAdmin = () => {
                 <td className="px-6 py-4 text-right">
                   {load ? (
                     <div>
-                      <div class="tooltip" data-tip="Loading...">
+                      <div className="tooltip" data-tip="Loading...">
                         <ImSpinner9 className="animate-spin block text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
                       </div>
                     </div>
                   ) : user?.role === "admin" ? (
                     <div onClick={() => userRole("user", user)}>
-                      <div class="tooltip" data-tip="Make User">
+                      <div className="tooltip" data-tip="Make User">
                         <GrUserExpert className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
                       </div>
                     </div>
                   ) : (
                     <div onClick={() => userRole("admin", user)}>
-                      <div class="tooltip" data-tip="Make Admin">
+                      <div className="tooltip" data-tip="Make Admin">
                         <GrUserAdmin className="text-sky-600 cursor-pointer hover:text-sky-500 text-2xl" />
                       </div>
                     </div>

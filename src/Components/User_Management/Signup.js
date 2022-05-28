@@ -29,10 +29,28 @@ const Signup = () => {
       return toast.error("Confirm Password Is'nt Same !");
     await createUserWithEmailAndPassword(data.Email, data.Password);
     await updateProfile({ displayName: data.Name });
+
+    await fetch("http://localhost:5000/login/", {
+      method: "POST",
+      body: JSON.stringify({
+        email: data.Email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        console.log("next");
+
+        // navigate(from, { replace: true });
+      });
     await fetch("http://localhost:5000/user", {
       method: "put",
       headers: {
         "content-type": "application/json",
+        authorization: `${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({
         email: data.Email,
@@ -41,9 +59,11 @@ const Signup = () => {
       }),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result));
-    reset();
-    navigate(from, { replace: true });
+      .then((result) => {
+        console.log(result);
+        reset();
+        navigate(from, { replace: true });
+      });
   };
 
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -60,23 +80,6 @@ const Signup = () => {
   if (error) {
     if (error.code === "auth/email-already-in-use")
       toast.error("Email Already Registered !");
-  }
-
-  if (user) {
-    fetch("http://localhost:5000/login/", {
-      method: "POST",
-      body: JSON.stringify({
-        email: user.user.email,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("accessToken", data.token);
-        navigate(from, { replace: true });
-      });
   }
 
   return (

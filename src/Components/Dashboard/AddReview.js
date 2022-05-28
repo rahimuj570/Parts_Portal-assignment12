@@ -17,7 +17,7 @@ const AddReview = () => {
           e.preventDefault();
           const revData = { name: user.displayName, rev: e.target.rev.value };
           if (e.target.rev.value.length !== 0) {
-            fetch("http://localhost:5000/add_rev", {
+            fetch("https://boiling-garden-56159.herokuapp.com/add_rev", {
               method: "post",
               headers: {
                 "content-type": "application/json",

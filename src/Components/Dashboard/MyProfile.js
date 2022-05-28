@@ -14,7 +14,7 @@ const MyProfile = () => {
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://boiling-garden-56159.herokuapp.com/user/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserData(data));
   }, [refetch]);
@@ -26,31 +26,31 @@ const MyProfile = () => {
       </div>
       <UseTitle title={"My Profile"} />
 
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <div class="avatar online placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-16">
-              <span class="text-xl">
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <div className="avatar online placeholder">
+            <div className="bg-neutral-focus text-neutral-content rounded-full w-16">
+              <span className="text-xl">
                 {userData?.name?.split(" ")[0].slice(0, 1) +
                   userData?.name?.split(" ")[1].slice(0, 1)}
               </span>
             </div>
           </div>
-          <h1 class="text-2xl pb-2 font-bold">{userData?.name}</h1>
+          <h1 className="text-2xl pb-2 font-bold">{userData?.name}</h1>
           <div className="flex items-center">
             <RiAdminLine className="w-5 h-5" />
             <span className="ml-1 font-bold">Role:</span>
-            <p class="ml-2 my-2">{userData?.role}</p>
+            <p className="ml-2 my-2">{userData?.role}</p>
           </div>
           <div className="flex items-center">
             <AiOutlineMail className="w-5 h-5" />
             <span className="ml-1 font-bold">Email:</span>
-            <p class="ml-2 my-2">{userData?.email}</p>
+            <p className="ml-2 my-2">{userData?.email}</p>
           </div>
           <div className="flex items-center">
             <GiModernCity className="w-5 h-5" />
             <span className="ml-1 font-bold">City:</span>
-            <p class="ml-2 my-2">
+            <p className="ml-2 my-2">
               {userData?.city
                 ? userData?.city
                 : "*Please Update Your Profile from Bellow."}
@@ -59,7 +59,7 @@ const MyProfile = () => {
           <div className="flex items-center">
             <MdOutlineSchool className="w-5 h-5" />
             <span className="ml-1 font-bold">Education:</span>
-            <p class="ml-2 my-2">
+            <p className="ml-2 my-2">
               {userData?.edu
                 ? userData?.edu
                 : "*Please Update Your Profile from Bellow."}
@@ -68,7 +68,7 @@ const MyProfile = () => {
           <div className="flex items-center">
             <GiSmartphone className="w-5 h-5" />
             <span className="ml-1 font-bold">Phone:</span>
-            <p class="ml-2 my-2">
+            <p className="ml-2 my-2">
               {userData?.phone
                 ? userData?.phone
                 : "*Please Update Your Profile from Bellow."}
@@ -92,7 +92,7 @@ const MyProfile = () => {
             edu: e.target.edu.value,
           };
 
-          fetch("http://localhost:5000/update_user", {
+          fetch("https://boiling-garden-56159.herokuapp.com/update_user", {
             method: "put",
             headers: {
               "content-type": "application/json",
@@ -109,7 +109,7 @@ const MyProfile = () => {
             });
         }}
       >
-        <label class="flex justify-center  mb-2 input-group input-group-lg">
+        <label className="flex justify-center  mb-2 input-group input-group-lg">
           <span>
             <GiModernCity />
           </span>
@@ -118,10 +118,10 @@ const MyProfile = () => {
             name="city"
             type="text"
             placeholder="Your City"
-            class="input input-bordered input-md"
+            className="input input-bordered input-md"
           />
         </label>
-        <label class="flex justify-center mb-2 input-group input-group-lg">
+        <label className="flex justify-center mb-2 input-group input-group-lg">
           <span>
             <MdOutlineSchool />
           </span>
@@ -130,10 +130,10 @@ const MyProfile = () => {
             name="edu"
             type="text"
             placeholder="Your Recent Education"
-            class="input input-bordered input-md"
+            className="input input-bordered input-md"
           />
         </label>
-        <label class="flex justify-center mb-2 input-group input-group-lg">
+        <label className="flex justify-center mb-2 input-group input-group-lg">
           <span>
             <GiSmartphone />
           </span>
@@ -142,7 +142,7 @@ const MyProfile = () => {
             name="phone"
             type="number"
             placeholder="Your Phone"
-            class="input input-bordered input-md"
+            className="input input-bordered input-md"
           />
         </label>
         <button className="mt-2 mb-10 btn-sm btn bg-sky-400 hover:bg-sky-300 text-white duration-3">

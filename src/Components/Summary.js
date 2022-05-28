@@ -10,40 +10,40 @@ const Summary = () => {
         Summary
       </div>
       <div className="w-5/6 mx-auto ">
-        <div class="stats w-full shadow">
-          <div class="stat">
-            <div class="stat-figure text-secondary">
+        <div className="stats w-full shadow">
+          <div className="stat">
+            <div className="stat-figure text-secondary">
               <BsPeopleFill className="w-8 h-8" />
             </div>
-            <div class="stat-title">Total Customers</div>
-            <div class="stat-value">31K</div>
-            <div class="stat-desc">Since 2008</div>
+            <div className="stat-title">Total Customers</div>
+            <div className="stat-value">31K</div>
+            <div className="stat-desc">Since 2008</div>
           </div>
 
-          <div class="stat">
-            <div class="stat-figure text-secondary">
+          <div className="stat">
+            <div className="stat-figure text-secondary">
               <AiOutlineDollarCircle className="w-8 h-8" />
             </div>
-            <div class="stat-title">Annual Revenue</div>
-            <div class="stat-value">120M+</div>
-            <div class="stat-desc">↗︎ 400 (22%)</div>
+            <div className="stat-title">Annual Revenue</div>
+            <div className="stat-value">120M+</div>
+            <div className="stat-desc">↗︎ 400 (22%)</div>
           </div>
 
-          <div class="stat">
-            <div class="stat-figure text-secondary">
+          <div className="stat">
+            <div className="stat-figure text-secondary">
               <BsFillGearFill className="w-8 h-8" />
             </div>
-            <div class="stat-title">Recent Parts</div>
-            <div class="stat-value">82</div>
-            <div class="stat-desc">↘︎ 90 (14%)</div>
+            <div className="stat-title">Recent Parts</div>
+            <div className="stat-value">82</div>
+            <div className="stat-desc">↘︎ 90 (14%)</div>
           </div>
-          <div class="stat">
-            <div class="stat-figure text-secondary">
+          <div className="stat">
+            <div className="stat-figure text-secondary">
               <BiHappyBeaming className="w-8 h-8" />
             </div>
-            <div class="stat-title">Customers Reviews</div>
-            <div class="stat-value">25k+</div>
-            <div class="stat-desc">↗︎ Satisfaction</div>
+            <div className="stat-title">Customers Reviews</div>
+            <div className="stat-value">25k+</div>
+            <div className="stat-desc">↗︎ Satisfaction</div>
           </div>
         </div>
       </div>

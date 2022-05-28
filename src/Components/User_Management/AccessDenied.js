@@ -6,9 +6,9 @@ const AccessDenied = () => {
   return (
     <>
       <UseTitle title={"Not Allowed"} />
-      <div class="w-full h-full bg-red-400 flex justify-center items-center">
+      <div className="w-full h-full bg-red-400 flex justify-center items-center">
         <div className="text-center">
-          <h1 class="text-white text-9xl font-extrabold">403</h1>
+          <h1 className="text-white text-9xl font-extrabold">403</h1>
           <h2 className="text-white font-semibold text-5xl">
             Access forbidden
           </h2>

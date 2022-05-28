@@ -3,18 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
   const navigate = useNavigate();
-  const { _id, name, price, about, minQuantity, quantity, img } = product;
+  const { _id, name, price, about, minQuantity, quantity, picture } = product;
   return (
     <>
-      <div class="card max-w-96 mx-auto bg-slate-100 shadow-xl">
-        <figure>
-          <img
-            src="https://api.lorem.space/image/car?w=400&h=225"
-            alt="Shoes"
-          />
+      <div className="card max-w-96 mx-auto bg-slate-100 shadow-xl">
+        <figure className="w-80 mx-auto h-60">
+          <img className="h-full w-full" src={picture} alt="Shoes" />
         </figure>
-        <div class="card-body">
-          <h2 class="card-title text-2xl">{name}</h2>
+        <div className="card-body">
+          <h2 className="card-title text-2xl">{name}</h2>
           <p>
             <span className="font-bold text-base">Price:</span> {price}
           </p>
@@ -28,10 +25,10 @@ const Product = ({ product }) => {
           <p>
             <span className="font-bold text-base">Short Info:</span> {about}
           </p>
-          <div class="card-actions justify-end">
+          <div className="card-actions justify-end">
             <button
               onClick={() => navigate(`/purchase/${_id}`)}
-              class="btn btn-primary"
+              className="btn btn-primary"
             >
               Buy Now
             </button>

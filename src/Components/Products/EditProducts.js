@@ -16,7 +16,7 @@ const EditProducts = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://boiling-garden-56159.herokuapp.com/product/${id}`)
       .then((res) => res.json())
       .then((data) => setPrevPdData(data));
   }, []);
@@ -71,7 +71,7 @@ const EditProducts = () => {
   };
 
   const updateHandler = () => {
-    const url = `http://localhost:5000/product/${id}`;
+    const url = `https://boiling-garden-56159.herokuapp.com/product/${id}`;
     fetch(url, {
       method: "put",
       headers: {
@@ -94,8 +94,8 @@ const EditProducts = () => {
         Edit Products
       </div>
 
-      <div class="p-5 flex flex-col w-full lg:flex-row">
-        <div class="grid flex-grow card shadow-lg rounded-box place-items-center">
+      <div className="p-5 flex flex-col w-full lg:flex-row">
+        <div className="grid flex-grow card shadow-lg rounded-box place-items-center">
           <form
             className="mt-5 w-5/6 mx-auto flex flex-col"
             onSubmit={handleSubmit(onSubmit)}
@@ -212,13 +212,13 @@ const EditProducts = () => {
             />
           </form>
         </div>
-        <div class="divider lg:divider-horizontal ">
+        <div className="divider lg:divider-horizontal ">
           <BsArrowRightCircleFill className="text-sky-500 h-16 w-16" />
         </div>
 
         {/* ============ Card ========= */}
-        <div class="grid flex-grow card shadow-lg rounded-box place-items-center">
-          <div class="card w-96 bg-base-100 shadow-xl">
+        <div className="grid flex-grow card shadow-lg rounded-box place-items-center">
+          <div className="card w-96 bg-base-100 shadow-xl">
             {load ? (
               <div className="card-body h-full w-full flex justify-center items-center bg-slate-100">
                 <SiConvertio className="block animate-spin w-20 h-20" />
@@ -228,8 +228,10 @@ const EditProducts = () => {
                 {newPdData.name ? (
                   <>
                     {" "}
-                    <div class="card-body">
-                      <h2 class="card-title mb-2 text-2xl">{newPdData.name}</h2>
+                    <div className="card-body">
+                      <h2 className="card-title mb-2 text-2xl">
+                        {newPdData.name}
+                      </h2>
                       <div className="mb-1 flex">
                         <span className="font-bold mr-2">Price:</span>
                         <p>{newPdData.price} TK</p>
@@ -266,8 +268,8 @@ const EditProducts = () => {
                   </>
                 ) : (
                   <>
-                    <div class="card-body">
-                      <h2 class="card-title mb-2 text-2xl">
+                    <div className="card-body">
+                      <h2 className="card-title mb-2 text-2xl">
                         {prevPdData.name}
                       </h2>
                       <div className="mb-1 flex">

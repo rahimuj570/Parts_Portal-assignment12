@@ -54,7 +54,7 @@ const AddProduct = () => {
 
             // ======= Product Add =====
             const url = `https://tranquil-hamlet-69916.herokuapp.com/add`;
-            fetch("http://localhost:5000/add_products", {
+            fetch("https://boiling-garden-56159.herokuapp.com/add_products", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

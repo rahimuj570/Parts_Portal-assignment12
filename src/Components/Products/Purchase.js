@@ -20,21 +20,21 @@ const Purchase = () => {
 
   // ======== Get Selected Product =======
   useEffect(() => {
-    const url = `http://localhost:5000/product/${id}`;
+    const url = `https://boiling-garden-56159.herokuapp.com/product/${id}`;
     fetch(url).then((res) => res.json().then((data) => setSinglePD(data)));
   }, [reFetch]);
   console.log(singlePD);
 
   // ========= Update Quantity =========
   const quantityUpdateAction = (latestData, userPD) => {
-    const url = `http://localhost:5000/product/${id}`;
+    const url = `https://boiling-garden-56159.herokuapp.com/product/${id}`;
     fetch(url, {
       method: "put",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(latestData),
     }).then((res) =>
       res.json().then((data) => {
-        fetch("http://localhost:5000/add_my_products", {
+        fetch("https://boiling-garden-56159.herokuapp.com/add_my_products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -132,8 +132,8 @@ const Purchase = () => {
                 }}
                 className="shadow-lg rounded-3xl px-1 items-center flex flex-col py-5 mt-2"
               >
-                <div class="mb-2 form-control">
-                  <label class="input-group input-group-md">
+                <div className="mb-2 form-control">
+                  <label className="input-group input-group-md">
                     <span>Address</span>
                     <input
                       required
@@ -141,13 +141,13 @@ const Purchase = () => {
                       name="address"
                       type="text"
                       placeholder="Your Address"
-                      class="input input-bordered input-md"
+                      className="input input-bordered input-md"
                     />
                   </label>
                 </div>
 
-                <div class="mb-2 form-control">
-                  <label class="input-group input-group-md">
+                <div className="mb-2 form-control">
+                  <label className="input-group input-group-md">
                     <span>Phone</span>
                     <input
                       required
@@ -155,13 +155,13 @@ const Purchase = () => {
                       name="phone"
                       type="number"
                       placeholder="Your Phone"
-                      class="input input-bordered input-md"
+                      className="input input-bordered input-md"
                     />
                   </label>
                 </div>
 
-                <div class="mb-2 form-control">
-                  <label class="input-group input-group-md">
+                <div className="mb-2 form-control">
+                  <label className="input-group input-group-md">
                     <span>Email</span>
                     <input
                       required
@@ -171,7 +171,7 @@ const Purchase = () => {
                       name="phone"
                       type="text"
                       placeholder="Type here"
-                      class="input input-bordered input-md"
+                      className="input input-bordered input-md"
                     />
                   </label>
                 </div>

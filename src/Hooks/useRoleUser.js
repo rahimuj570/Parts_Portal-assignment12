@@ -6,7 +6,7 @@ const useRoleUser = (email) => {
   const [user] = useAuthState(auth);
   const [role, setRole] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user.email}`)
+    fetch(`https://boiling-garden-56159.herokuapp.com/user/${user.email}`)
       .then((res) => res.json())
       .then((role) => setRole(role.role));
   }, []);

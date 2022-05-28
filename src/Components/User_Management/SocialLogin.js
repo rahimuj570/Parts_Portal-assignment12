@@ -24,7 +24,7 @@ const SocialLogin = () => {
 
   // ============ User Post =======
   if (user) {
-    fetch("http://localhost:5000/user", {
+    fetch("https://boiling-garden-56159.herokuapp.com/user", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -37,7 +37,7 @@ const SocialLogin = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        fetch("http://localhost:5000/login/", {
+        fetch("https://boiling-garden-56159.herokuapp.com/login/", {
           method: "POST",
           body: JSON.stringify({
             email: user.user.email,
