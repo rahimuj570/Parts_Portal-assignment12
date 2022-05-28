@@ -96,6 +96,7 @@ const MyProfile = () => {
             method: "put",
             headers: {
               "content-type": "application/json",
+              authorization: `${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify({
               ...updateData,
