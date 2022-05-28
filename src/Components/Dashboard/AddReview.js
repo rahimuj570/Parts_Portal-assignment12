@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.int";
 import UseTitle from "../../Hooks/UseTitle";
 
@@ -28,6 +29,7 @@ const AddReview = () => {
               .then((result) => {
                 e.target.reset();
                 console.log(result);
+                toast.success("Review Added...");
               });
           }
         }}
