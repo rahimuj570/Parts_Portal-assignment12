@@ -30,7 +30,10 @@ const Purchase = () => {
     const url = `https://boiling-garden-56159.herokuapp.com/product/${id}`;
     fetch(url, {
       method: "put",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
+      },
       body: JSON.stringify(latestData),
     }).then((res) =>
       res.json().then((data) => {
