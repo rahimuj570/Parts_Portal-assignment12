@@ -30,7 +30,7 @@ const Signup = () => {
     await createUserWithEmailAndPassword(data.Email, data.Password);
     await updateProfile({ displayName: data.Name });
 
-    await fetch("http://localhost:5000/login/", {
+    await fetch("https://boiling-garden-56159.herokuapp.com/login/", {
       method: "POST",
       body: JSON.stringify({
         email: data.Email,
@@ -46,7 +46,7 @@ const Signup = () => {
 
         // navigate(from, { replace: true });
       });
-    await fetch("http://localhost:5000/user", {
+    await fetch("https://boiling-garden-56159.herokuapp.com/user", {
       method: "put",
       headers: {
         "content-type": "application/json",

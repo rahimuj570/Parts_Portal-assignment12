@@ -11,7 +11,7 @@ const MakeAdmin = () => {
   const [reFetch, setReFetch] = useState(false);
   const [load, setLoad] = useState(false);
   useEffect(() => {
-    const url = `http://localhost:5000/user`;
+    const url = `https://boiling-garden-56159.herokuapp.com/user`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setUsers(data));
@@ -20,7 +20,7 @@ const MakeAdmin = () => {
   // =======Update user Action ====
   const userRole = (role, user) => {
     setLoad(true);
-    fetch("http://localhost:5000/user", {
+    fetch("https://boiling-garden-56159.herokuapp.com/user", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
